@@ -65,3 +65,10 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Make credo part of mix_test_watch
+config :mix_test_watch,
+  tasks: [
+    "test",
+    "credo --strict"
+  ]
