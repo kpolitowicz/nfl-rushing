@@ -28,20 +28,20 @@
       <%= for player <- @player_stats do %>
         <tr>
           <td><%= player.name %></td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
-          <td>aaa</td>
+          <td><%= player.team %></td>
+          <td><%= player.position %></td>
+          <td><%= player.rushing_attempts_per_game %></td>
+          <td><%= player.rushing_attempts %></td>
+          <td><%= player.total_rushing_yards %></td>
+          <td><%= player.avg_rushing_yards_per_attempt %></td>
+          <td><%= player.rushing_yards_per_game %></td>
+          <td><%= player.total_rushing_touchdowns %></td>
+          <td><%= player.longest_rush %></td>
+          <td><%= player.rushing_first_downs %></td>
+          <td><%= player.rushing_first_down_percentage %></td>
+          <td><%= player.rushing_20_plus_yards %></td>
+          <td><%= player.rushing_40_plus_yards %></td>
+          <td><%= player.rushing_fumbles %></td>
         </tr>
       <% end %>
       </tbody>
