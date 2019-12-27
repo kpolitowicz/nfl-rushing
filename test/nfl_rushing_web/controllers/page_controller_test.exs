@@ -1,8 +1,11 @@
 defmodule NflRushingWeb.PageControllerTest do
   use NflRushingWeb.ConnCase
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+  describe "GET /" do
+    test "shows the page title", %{conn: conn} do
+      conn = get(conn, "/")
+
+      assert html_response(conn, 200) =~ "NFL players' rushing statistics"
+    end
   end
 end
