@@ -25,8 +25,9 @@
         </tr>
       </thead>
       <tbody>
+      <%= for player <- @player_stats do %>
         <tr>
-          <td>aaa</td>
+          <td><%= player.name %></td>
           <td>aaa</td>
           <td>aaa</td>
           <td>aaa</td>
@@ -42,6 +43,7 @@
           <td>aaa</td>
           <td>aaa</td>
         </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

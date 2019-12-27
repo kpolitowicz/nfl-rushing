@@ -7,5 +7,12 @@ defmodule NflRushingWeb.PageControllerTest do
 
       assert html_response(conn, 200) =~ "NFL players' rushing statistics"
     end
+
+    test "shows the players' stats table", %{conn: conn} do
+      conn = get(conn, "/")
+      resp = html_response(conn, 200)
+
+      assert resp =~ "<td>Joe Banyard</td>"
+    end
   end
 end
