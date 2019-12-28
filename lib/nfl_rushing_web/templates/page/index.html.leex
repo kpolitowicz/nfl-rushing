@@ -1,6 +1,7 @@
 <section class="page-head">
   <h1>NFL players' rushing statistics</h1>
-  <%= Phoenix.LiveView.live_render(@conn, NflRushingWeb.ThermostatLive, session: %{id: 1}) %>
+  Current temperature: <%= @temperature %>
+  <button phx-click="change_temperature">+</button>
 </section>
 
 <div class="container">
