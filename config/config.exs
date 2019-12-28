@@ -11,6 +11,9 @@ use Mix.Config
 config :nfl_rushing, NflRushingWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Xg5TOGf4QAub81+lpiJdfM8ZKsRTveWjmzVWeJHEPvIq1CRevayleZAE+8Qf8ZP6",
+  live_view: [
+    signing_salt: "5Enf1gq30DBoXcrvSTpc6BkfBZVApozQ"
+  ],
   render_errors: [view: NflRushingWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: NflRushing.PubSub, adapter: Phoenix.PubSub.PG2]
 

@@ -4,7 +4,7 @@ defmodule NflRushingWeb.PageController do
   alias NflRushing.PlayerStats
 
   def index(conn, _params) do
-    stats = PlayerStats.all
+    stats = PlayerStats.all()
 
     render(conn, "index.html", player_stats: stats)
   end

@@ -1,5 +1,6 @@
 <section class="page-head">
   <h1>NFL players' rushing statistics</h1>
+  <%= Phoenix.LiveView.live_render(@conn, NflRushingWeb.ThermostatLive, session: %{id: 1}) %>
 </section>
 
 <div class="container">

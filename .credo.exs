@@ -149,7 +149,6 @@
         {Credo.Check.Warning.UnusedStringOperation, []},
         {Credo.Check.Warning.UnusedTupleOperation, []},
 
-
         #
         # Checks scheduled for next check update (opt-in for now, just replace `false` with `[]`)
         # {Credo.Check.Warning.MixEnv, false},
