@@ -15,7 +15,7 @@ defmodule NflRushingWeb.PlayerStatsLive do
   end
 
   def handle_event("change_temperature", _value, socket) do
-    new_temp = Enum.random(20..40)
+    new_temp = 40
     {:noreply, assign(socket, temperature: new_temp, player_stats: [])}
   end
 end
