@@ -1,7 +1,13 @@
 <section class="page-head">
   <h1>NFL players' rushing statistics</h1>
-  Current temperature: <%= @temperature %>
-  <button phx-click="change_temperature">+</button>
+  <p>
+    <%= form_for :player, "#", [phx_change: :filter_player], fn f -> %>
+      <label>
+        Filter by player:
+        <%= select(f, :name, Enum.map(@player_stats, fn p -> p.name end), prompt: "Choose player") %>
+      </label>
+    <% end %>
+  </p>
 </section>
 
 <div class="container">

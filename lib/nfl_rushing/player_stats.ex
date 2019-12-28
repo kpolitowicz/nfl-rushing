@@ -16,6 +16,19 @@ defmodule NflRushing.PlayerStats do
     |> Enum.map(fn attrs -> to_player(attrs) end)
   end
 
+  @doc """
+  Returns list of players filtered by player's name.
+  (Essentially a list of 1)
+  """
+  def filter_by(fields) do
+    # FIXME: add teh case for filter by nil (all)
+    # FIXME: add unit tests
+    all()
+    |> Enum.filter(fn player ->
+      player.name == fields["name"]
+    end)
+  end
+
   defp to_player(attrs) do
     %Player{
       name: attrs["Player"],

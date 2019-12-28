@@ -1,4 +1,4 @@
-defmodule NflRushingWeb.PlayerStatsLive do
+defmodule NflRushingWeb.PlayerStatsView do
   @moduledoc """
   Handles players stats table and all associated events (filtering, sorting).
   """
@@ -12,14 +12,14 @@ defmodule NflRushingWeb.PlayerStatsLive do
   end
 
   def mount(%{}, socket) do
-    temperature = 31
     stats = PlayerStats.all()
 
-    {:ok, assign(socket, temperature: temperature, player_stats: stats)}
+    {:ok, assign(socket, player_stats: stats)}
   end
 
-  def handle_event("change_temperature", _value, socket) do
-    new_temp = 40
-    {:noreply, assign(socket, temperature: new_temp, player_stats: [])}
+  def handle_event("filter_player", %{"player" => params}, socket) do
+    stats = PlayerStats.filter_by(params)
+
+    {:noreply, assign(socket, player_stats: stats)}
   end
 end
