@@ -1,4 +1,8 @@
 defmodule NflRushingWeb.PlayerStatsLive do
+  @moduledoc """
+  Handles players stats table and all associated events (filtering, sorting).
+  """
+
   use Phoenix.LiveView
 
   alias NflRushing.PlayerStats
