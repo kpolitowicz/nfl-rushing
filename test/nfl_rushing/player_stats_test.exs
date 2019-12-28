@@ -28,4 +28,13 @@ defmodule CarpoolService.Core.CarpoolTest do
              } = hd(list)
     end
   end
+
+  describe "filter_by" do
+    test "filters player stats by player name" do
+      list = PlayerStats.filter_by(%{"name" => "Charlie Whitehurst"})
+
+      assert 1 = length(list)
+      assert %Player{name: "Charlie Whitehurst", team: "CLE"} = hd(list)
+    end
+  end
 end

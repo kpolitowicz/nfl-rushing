@@ -22,7 +22,6 @@ defmodule NflRushing.PlayerStats do
   """
   def filter_by(fields) do
     # FIXME: add teh case for filter by nil (all)
-    # FIXME: add unit tests
     all()
     |> Enum.filter(fn player ->
       player.name == fields["name"]
