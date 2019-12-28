@@ -36,5 +36,11 @@ defmodule CarpoolService.Core.CarpoolTest do
       assert 1 = length(list)
       assert %Player{name: "Charlie Whitehurst", team: "CLE"} = hd(list)
     end
+
+    test "returns the whole list if nil is passed" do
+      list = PlayerStats.filter_by(%{"name" => ""})
+
+      assert 326 = length(list)
+    end
   end
 end

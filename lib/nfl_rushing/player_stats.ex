@@ -19,12 +19,14 @@ defmodule NflRushing.PlayerStats do
   @doc """
   Returns list of players filtered by player's name.
   (Essentially a list of 1)
+  Returns the whole list if "" is passed.
   """
-  def filter_by(fields) do
-    # FIXME: add teh case for filter by nil (all)
+  def filter_by(%{"name" => ""}), do: all()
+
+  def filter_by(%{"name" => name}) do
     all()
     |> Enum.filter(fn player ->
-      player.name == fields["name"]
+      player.name == name
     end)
   end
 
