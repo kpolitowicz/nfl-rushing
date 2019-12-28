@@ -3,6 +3,7 @@ defmodule CarpoolService.Core.CarpoolTest do
 
   alias NflRushing.{Player, PlayerStats}
 
+  # FIXME: make separate (shorter list) for tests
   describe "all" do
     test "reads data from JSON file to Player structs" do
       list = PlayerStats.all()

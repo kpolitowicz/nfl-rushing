@@ -16,6 +16,16 @@ defmodule NflRushing.PlayerStats do
     |> Enum.map(fn attrs -> to_player(attrs) end)
   end
 
+  # FIXME: add test for this
+  @doc """
+  Returns sorted list of players names.
+  """
+  def player_names do
+    all()
+    |> Enum.map(fn p -> p.name end)
+    |> Enum.sort
+  end
+
   @doc """
   Returns list of players filtered by player's name.
   (Essentially a list of 1)

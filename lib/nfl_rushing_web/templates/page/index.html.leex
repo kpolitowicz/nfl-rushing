@@ -4,7 +4,7 @@
     <%= form_for :player, "#", [phx_change: :filter_player], fn f -> %>
       <label>
         Filter by player:
-        <%= select(f, :name, Enum.map(@player_stats, fn p -> p.name end), prompt: "Choose player") %>
+        <%= select(f, :name, @names, prompt: "Choose player") %>
       </label>
     <% end %>
   </p>

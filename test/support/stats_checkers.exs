@@ -17,4 +17,9 @@ defmodule StatsCheckers do
     |> hd
     |> Floki.text()
   end
+
+  def player_filter_list(html) do
+    html
+    |> Floki.find("#player_name option")
+  end
 end
