@@ -12,7 +12,7 @@ defmodule NflRushingWeb.PlayerStatsViewTest do
     assert player_filter_selected(resp) == "Breshad Perriman"
   end
 
-  test "orders by TD", %{conn: conn} do
+  test "orders table results by given column", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
     resp = render_change(view, :order_by, %{"order" => "TD", "filter" => ""})
 
