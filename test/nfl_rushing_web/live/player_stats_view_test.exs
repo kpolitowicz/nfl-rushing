@@ -9,5 +9,6 @@ defmodule NflRushingWeb.PlayerStatsViewTest do
     assert players_count(resp) == 1
     assert first_player_name(resp) == "Breshad Perriman"
     assert player_filter_list(resp) |> length == 326 + 1
+    assert player_filter_selected(resp) == "Breshad Perriman"
   end
 end

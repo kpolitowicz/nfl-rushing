@@ -22,4 +22,10 @@ defmodule StatsCheckers do
     html
     |> Floki.find("#player_name option")
   end
+
+  def player_filter_selected(html) do
+    html
+    |> Floki.find("#player_name option[selected]")
+    |> Floki.text()
+  end
 end

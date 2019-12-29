@@ -6,9 +6,9 @@ defmodule CarpoolService.Core.CarpoolTest do
   # FIXME: make separate (shorter list) for tests
   describe "all" do
     test "reads data from JSON file to Player structs" do
-      list = PlayerStats.all()
+      stats = PlayerStats.all()
 
-      assert 326 = length(list)
+      assert 326 = length(stats.stats)
 
       assert %Player{
                name: "Joe Banyard",
@@ -26,22 +26,35 @@ defmodule CarpoolService.Core.CarpoolTest do
                rushing_20_plus_yards: 0,
                rushing_40_plus_yards: 0,
                rushing_fumbles: 0
-             } = hd(list)
+             } = hd(stats.stats)
+    end
+
+    test "returns all player names" do
+      stats = PlayerStats.all()
+
+      assert 326 = length(stats.players)
+      assert hd(stats.players) == "Aaron Ripkowski"
     end
   end
 
   describe "filter_by" do
     test "filters player stats by player name" do
-      list = PlayerStats.filter_by(%{"name" => "Charlie Whitehurst"})
+      stats = PlayerStats.filter_by(%{"name" => "Charlie Whitehurst"})
 
-      assert 1 = length(list)
-      assert %Player{name: "Charlie Whitehurst", team: "CLE"} = hd(list)
+      assert 1 = length(stats.stats)
+      assert %Player{name: "Charlie Whitehurst", team: "CLE"} = hd(stats.stats)
+    end
+
+    test "still returns teh full list of player names" do
+      stats = PlayerStats.filter_by(%{"name" => "Charlie Whitehurst"})
+
+      assert 326 = length(stats.players)
     end
 
     test "returns the whole list if nil is passed" do
-      list = PlayerStats.filter_by(%{"name" => ""})
+      stats = PlayerStats.filter_by(%{"name" => ""})
 
-      assert 326 = length(list)
+      assert 326 = length(stats.stats)
     end
   end
 end

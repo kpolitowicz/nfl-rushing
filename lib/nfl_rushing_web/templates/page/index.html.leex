@@ -4,7 +4,7 @@
     <%= form_for :player, "#", [phx_change: :filter_player], fn f -> %>
       <label>
         Filter by player:
-        <%= select(f, :name, @names, prompt: "All players") %>
+        <%= select(f, :name, @stats.players, prompt: "All players", selected: @stats.filtered_by_name) %>
       </label>
     <% end %>
   </p>
@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-      <%= for player <- @player_stats do %>
+      <%= for player <- @stats.stats do %>
         <tr>
           <td><%= player.name %></td>
           <td><%= player.team %></td>

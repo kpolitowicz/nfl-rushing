@@ -5,25 +5,19 @@ defmodule NflRushing.PlayerStats do
 
   alias NflRushing.Player
 
+  defstruct ~w[stats players filtered_by_name]a
+
   @doc """
   Returns a list of all players as read from the JSON file.
   """
   def all do
-    {:ok, stats_str} = File.read(__DIR__ <> "/../../rushing.json")
+    stats = read_stats_from_file()
 
-    stats_str
-    |> Jason.decode!()
-    |> Enum.map(fn attrs -> to_player(attrs) end)
-  end
-
-  # FIXME: add test for this
-  @doc """
-  Returns sorted list of players names.
-  """
-  def player_names do
-    all()
-    |> Enum.map(fn p -> p.name end)
-    |> Enum.sort
+    %__MODULE__{
+      stats: stats,
+      players: player_names(stats),
+      filtered_by_name: ""
+    }
   end
 
   @doc """
@@ -34,7 +28,31 @@ defmodule NflRushing.PlayerStats do
   def filter_by(%{"name" => ""}), do: all()
 
   def filter_by(%{"name" => name}) do
-    all()
+    stats = read_stats_from_file()
+
+    %__MODULE__{
+      stats: filter_by_name(stats, name),
+      players: player_names(stats),
+      filtered_by_name: name
+    }
+  end
+
+  defp read_stats_from_file do
+    {:ok, stats_str} = File.read(__DIR__ <> "/../../rushing.json")
+
+    stats_str
+    |> Jason.decode!()
+    |> Enum.map(fn attrs -> to_player(attrs) end)
+  end
+
+  defp player_names(full_stats) do
+    full_stats
+    |> Enum.map(fn p -> p.name end)
+    |> Enum.sort
+  end
+
+  defp filter_by_name(stats, name) do
+    stats
     |> Enum.filter(fn player ->
       player.name == name
     end)

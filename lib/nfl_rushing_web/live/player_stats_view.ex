@@ -13,16 +13,13 @@ defmodule NflRushingWeb.PlayerStatsView do
 
   def mount(%{}, socket) do
     stats = PlayerStats.all()
-    players = PlayerStats.player_names()
 
-    {:ok, assign(socket, player_stats: stats, names: players)}
+    {:ok, assign(socket, stats: stats)}
   end
 
-  # FIXME: pass current filter to set selected in the filter select
   def handle_event("filter_player", %{"player" => params}, socket) do
     stats = PlayerStats.filter_by(params)
-    players = PlayerStats.player_names()
 
-    {:noreply, assign(socket, player_stats: stats, names: players)}
+    {:noreply, assign(socket, stats: stats)}
   end
 end
