@@ -25,8 +25,6 @@ defmodule NflRushing.PlayerStats do
   (Essentially a list of 1)
   Returns the whole list if "" is passed.
   """
-  def filter_by(%{"name" => ""}), do: all()
-
   def filter_by(%{"name" => name}) do
     stats = read_stats_from_file()
 
@@ -37,21 +35,15 @@ defmodule NflRushing.PlayerStats do
     }
   end
 
-  def order_by(attr, "") do
-    stats = read_stats_from_file()
-
-    %__MODULE__{
-      stats: order_by_attr(stats, attr),
-      players: player_names(stats),
-      filtered_by_name: ""
-    }
-  end
-
+  @doc """
+  Returns list of players ordered by given attribute.
+  The allowed attributes are: TD, Yds and Lng.
+  """
   def order_by(attr, name) do
     stats = read_stats_from_file()
 
     %__MODULE__{
-      stats: filter_by_name(stats, name),
+      stats: stats |> filter_by_name(name) |> order_by_attr(attr),
       players: player_names(stats),
       filtered_by_name: name
     }
@@ -70,6 +62,8 @@ defmodule NflRushing.PlayerStats do
     |> Enum.map(fn p -> p.name end)
     |> Enum.sort
   end
+
+  defp filter_by_name(stats, ""), do: stats
 
   defp filter_by_name(stats, name) do
     stats
