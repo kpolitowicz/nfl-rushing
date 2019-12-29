@@ -14,6 +14,7 @@ defmodule NflRushing.Player do
     rushing_yards_per_game
     total_rushing_touchdowns
     longest_rush
+    longest_rush_int
     rushing_first_downs
     rushing_first_down_percentage
     rushing_20_plus_yards
