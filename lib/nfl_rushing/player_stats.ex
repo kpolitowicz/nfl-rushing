@@ -60,7 +60,7 @@ defmodule NflRushing.PlayerStats do
   defp player_names(full_stats) do
     full_stats
     |> Enum.map(fn p -> p.name end)
-    |> Enum.sort
+    |> Enum.sort()
   end
 
   defp filter_by_name(stats, ""), do: stats
