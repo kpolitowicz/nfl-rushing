@@ -37,6 +37,16 @@ defmodule NflRushing.PlayerStats do
     }
   end
 
+  def order_by(attr) do
+    stats = read_stats_from_file()
+
+    %__MODULE__{
+      stats: order_by(stats, attr),
+      players: player_names(stats),
+      filtered_by_name: ""
+    }
+  end
+
   defp read_stats_from_file do
     {:ok, stats_str} = File.read(__DIR__ <> "/../../rushing.json")
 
@@ -56,6 +66,11 @@ defmodule NflRushing.PlayerStats do
     |> Enum.filter(fn player ->
       player.name == name
     end)
+  end
+
+  defp order_by(stats, "TD") do
+    stats
+    |> Enum.sort(&(&1.total_rushing_touchdowns > &2.total_rushing_touchdowns))
   end
 
   defp to_player(attrs) do

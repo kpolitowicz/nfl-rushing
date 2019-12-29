@@ -22,4 +22,10 @@ defmodule NflRushingWeb.PlayerStatsView do
 
     {:noreply, assign(socket, stats: stats)}
   end
+
+  def handle_event("order_by", %{"order" => field}, socket) do
+    stats = PlayerStats.order_by(field)
+
+    {:noreply, assign(socket, stats: stats)}
+  end
 end
