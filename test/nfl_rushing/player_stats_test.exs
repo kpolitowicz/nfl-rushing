@@ -71,6 +71,12 @@ defmodule CarpoolService.Core.CarpoolTest do
       assert %Player{name: "Isaiah Crowell", longest_rush: "85T"} = hd(stats.stats)
     end
 
+    test "sorts descending by Yds (as numbers)" do
+      stats = PlayerStats.order_by("Yds", "")
+
+      assert %Player{name: "Ezekiel Elliott", total_rushing_yards: "1,631"} = hd(stats.stats)
+    end
+
     test "keep filter on" do
       stats = PlayerStats.order_by("TD", "Charlie Whitehurst")
 

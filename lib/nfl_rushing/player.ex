@@ -10,6 +10,7 @@ defmodule NflRushing.Player do
     rushing_attempts_per_game
     rushing_attempts
     total_rushing_yards
+    total_rushing_yards_int
     avg_rushing_yards_per_attempt
     rushing_yards_per_game
     total_rushing_touchdowns

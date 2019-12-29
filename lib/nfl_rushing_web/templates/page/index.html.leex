@@ -20,7 +20,7 @@
           <th title="Player's position">Pos</th>
           <th title="Rushing Attempts Per Game Average">Att/G</th>
           <th title="Rushing Attempts">Att</th>
-          <th title="Total Rushing Yards">Yds</th>
+          <th title="Total Rushing Yards" phx-click="order_by" phx-value-order="Yds" phx-value-filter="<%= @stats.filtered_by_name %>" class="sortable">Yds</th>
           <th title="Rushing Average Yards Per Attempt">Avg</th>
           <th title="Rushing Yards Per Game">Yds/G</th>
           <th title="Total Rushing Touchdowns" phx-click="order_by" phx-value-order="TD" phx-value-filter="<%= @stats.filtered_by_name %>" class="sortable">TD</th>

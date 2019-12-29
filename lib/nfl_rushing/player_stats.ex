@@ -82,6 +82,11 @@ defmodule NflRushing.PlayerStats do
     |> Enum.sort(&(&1.longest_rush_int > &2.longest_rush_int))
   end
 
+  defp order_by_attr(stats, "Yds") do
+    stats
+    |> Enum.sort(&(&1.total_rushing_yards_int > &2.total_rushing_yards_int))
+  end
+
   defp to_player(attrs) do
     %Player{
       name: attrs["Player"],
@@ -90,6 +95,7 @@ defmodule NflRushing.PlayerStats do
       rushing_attempts: attrs["Att"],
       rushing_attempts_per_game: attrs["Att/G"],
       total_rushing_yards: attrs["Yds"],
+      total_rushing_yards_int: yds_to_int(attrs["Yds"]),
       avg_rushing_yards_per_attempt: attrs["Avg"],
       rushing_yards_per_game: attrs["Yds/G"],
       total_rushing_touchdowns: attrs["TD"],
@@ -106,6 +112,14 @@ defmodule NflRushing.PlayerStats do
   defp longest_rush_to_int(lng) when is_integer(lng), do: lng
   defp longest_rush_to_int(lng) do
     Integer.parse(lng)
+    |> elem(0)
+  end
+
+  defp yds_to_int(yds) when is_integer(yds), do: yds
+  defp yds_to_int(yds) when is_binary(yds) do
+    yds
+    |> String.replace(",", "")
+    |> Integer.parse
     |> elem(0)
   end
 end
