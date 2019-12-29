@@ -14,11 +14,17 @@ defmodule NflRushingWeb.PlayerStatsViewTest do
 
   test "orders by TD", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
-    resp = render_change(view, :order_by, %{"order" => "TD"})
+    resp = render_change(view, :order_by, %{"order" => "TD", "filter" => ""})
 
     assert first_player_name(resp) == "LeGarrette Blount"
   end
 
-  # FIXME: add test for order with filter?
+  test "ordering keeps results filtered", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/")
+    resp = render_change(view, :order_by, %{"order" => "TD", "filter" => "Breshad Perriman"})
+
+    assert players_count(resp) == 1
+  end
+
   # FIXME: add test for filter with order?
 end

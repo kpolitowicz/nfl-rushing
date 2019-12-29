@@ -37,13 +37,23 @@ defmodule NflRushing.PlayerStats do
     }
   end
 
-  def order_by(attr) do
+  def order_by(attr, "") do
     stats = read_stats_from_file()
 
     %__MODULE__{
-      stats: order_by(stats, attr),
+      stats: order_by_attr(stats, attr),
       players: player_names(stats),
       filtered_by_name: ""
+    }
+  end
+
+  def order_by(attr, name) do
+    stats = read_stats_from_file()
+
+    %__MODULE__{
+      stats: filter_by_name(stats, name),
+      players: player_names(stats),
+      filtered_by_name: name
     }
   end
 
@@ -68,7 +78,7 @@ defmodule NflRushing.PlayerStats do
     end)
   end
 
-  defp order_by(stats, "TD") do
+  defp order_by_attr(stats, "TD") do
     stats
     |> Enum.sort(&(&1.total_rushing_touchdowns > &2.total_rushing_touchdowns))
   end
