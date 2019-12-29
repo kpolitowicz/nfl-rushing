@@ -14,7 +14,8 @@ defmodule NflRushingWeb.ExportControllerTest do
       conn = get(conn, "/export", %{"order" => "TD", "filter" => ""})
       resp = conn.resp_body
 
-      assert row(resp, 1) =~ "LeGarrette Blount,NE,RB,299,18.7,\"1,161\",3.9,72.6,18,44,67,22.4,7,3,2"
+      assert row(resp, 1) =~
+               "LeGarrette Blount,NE,RB,299,18.7,\"1,161\",3.9,72.6,18,44,67,22.4,7,3,2"
     end
 
     test "sends CSV with filtered data", %{conn: conn} do

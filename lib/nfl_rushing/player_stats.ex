@@ -58,23 +58,25 @@ defmodule NflRushing.PlayerStats do
   def to_csv(stats) do
     data =
       stats.stats
-      |> Enum.map(&([
-        &1.name,
-        &1.team,
-        &1.position,
-        &1.rushing_attempts,
-        &1.rushing_attempts_per_game,
-        &1.total_rushing_yards,
-        &1.avg_rushing_yards_per_attempt,
-        &1.rushing_yards_per_game,
-        &1.total_rushing_touchdowns,
-        &1.longest_rush,
-        &1.rushing_first_downs,
-        &1.rushing_first_down_percentage,
-        &1.rushing_20_plus_yards,
-        &1.rushing_40_plus_yards,
-        &1.rushing_fumbles
-      ]))
+      |> Enum.map(
+        &[
+          &1.name,
+          &1.team,
+          &1.position,
+          &1.rushing_attempts,
+          &1.rushing_attempts_per_game,
+          &1.total_rushing_yards,
+          &1.avg_rushing_yards_per_attempt,
+          &1.rushing_yards_per_game,
+          &1.total_rushing_touchdowns,
+          &1.longest_rush,
+          &1.rushing_first_downs,
+          &1.rushing_first_down_percentage,
+          &1.rushing_20_plus_yards,
+          &1.rushing_40_plus_yards,
+          &1.rushing_fumbles
+        ]
+      )
 
     [headers() | data]
   end
@@ -142,17 +144,19 @@ defmodule NflRushing.PlayerStats do
   end
 
   defp lng_to_int(lng) when is_integer(lng), do: lng
+
   defp lng_to_int(lng) do
     lng
-    |> Integer.parse
+    |> Integer.parse()
     |> elem(0)
   end
 
   defp yds_to_int(yds) when is_integer(yds), do: yds
+
   defp yds_to_int(yds) when is_binary(yds) do
     yds
     |> String.replace(",", "")
-    |> Integer.parse
+    |> Integer.parse()
     |> elem(0)
   end
 

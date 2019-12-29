@@ -13,16 +13,16 @@ defmodule NflRushingWeb.ExportController do
   defp csv_content(%{"order" => order, "filter" => filter}) do
     PlayerStats.order_by(order, filter)
     |> PlayerStats.to_csv()
-    |> CSV.encode
-    |> Enum.to_list
+    |> CSV.encode()
+    |> Enum.to_list()
     |> to_string
   end
 
   defp csv_content(_params) do
     PlayerStats.all()
     |> PlayerStats.to_csv()
-    |> CSV.encode
-    |> Enum.to_list
+    |> CSV.encode()
+    |> Enum.to_list()
     |> to_string
   end
 end
