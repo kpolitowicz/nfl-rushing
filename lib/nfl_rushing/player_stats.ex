@@ -5,7 +5,7 @@ defmodule NflRushing.PlayerStats do
 
   alias NflRushing.Player
 
-  defstruct ~w[stats players filtered_by_name]a
+  defstruct ~w[stats players filtered_by_name ordered_by]a
 
   @doc """
   Returns a list of all players as read from the JSON file.
@@ -16,7 +16,8 @@ defmodule NflRushing.PlayerStats do
     %__MODULE__{
       stats: stats,
       players: player_names(stats),
-      filtered_by_name: ""
+      filtered_by_name: "",
+      ordered_by: ""
     }
   end
 
@@ -31,7 +32,8 @@ defmodule NflRushing.PlayerStats do
     %__MODULE__{
       stats: filter_by_name(stats, name),
       players: player_names(stats),
-      filtered_by_name: name
+      filtered_by_name: name,
+      ordered_by: ""
     }
   end
 
@@ -45,7 +47,8 @@ defmodule NflRushing.PlayerStats do
     %__MODULE__{
       stats: stats |> filter_by_name(filter_by_name) |> order_by_attr(attr),
       players: player_names(stats),
-      filtered_by_name: filter_by_name
+      filtered_by_name: filter_by_name,
+      ordered_by: attr
     }
   end
 
@@ -113,6 +116,8 @@ defmodule NflRushing.PlayerStats do
     stats
     |> Enum.sort(&(&1.total_rushing_yards_int > &2.total_rushing_yards_int))
   end
+
+  defp order_by_attr(stats, _), do: stats
 
   defp to_player(attrs) do
     %Player{
