@@ -39,13 +39,13 @@ defmodule NflRushing.PlayerStats do
   Returns list of players ordered by given attribute.
   The allowed attributes are: TD, Yds and Lng.
   """
-  def order_by(attr, name) do
+  def order_by(attr, filter_by_name) do
     stats = read_stats_from_file()
 
     %__MODULE__{
-      stats: stats |> filter_by_name(name) |> order_by_attr(attr),
+      stats: stats |> filter_by_name(filter_by_name) |> order_by_attr(attr),
       players: player_names(stats),
-      filtered_by_name: name
+      filtered_by_name: filter_by_name
     }
   end
 
