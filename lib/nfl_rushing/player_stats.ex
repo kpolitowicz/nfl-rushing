@@ -49,6 +49,33 @@ defmodule NflRushing.PlayerStats do
     }
   end
 
+  @doc """
+  Returns player stats as list of lists to easy convert to CSV
+  """
+  def to_csv(stats) do
+    data =
+      stats.stats
+      |> Enum.map(&([
+        &1.name,
+        &1.team,
+        &1.position,
+        &1.rushing_attempts,
+        &1.rushing_attempts_per_game,
+        &1.total_rushing_yards,
+        &1.avg_rushing_yards_per_attempt,
+        &1.rushing_yards_per_game,
+        &1.total_rushing_touchdowns,
+        &1.longest_rush,
+        &1.rushing_first_downs,
+        &1.rushing_first_down_percentage,
+        &1.rushing_20_plus_yards,
+        &1.rushing_40_plus_yards,
+        &1.rushing_fumbles
+      ]))
+
+    [headers() | data]
+  end
+
   defp read_stats_from_file do
     {:ok, stats_str} = File.read(__DIR__ <> "/../../rushing.json")
 
@@ -122,5 +149,25 @@ defmodule NflRushing.PlayerStats do
     |> String.replace(",", "")
     |> Integer.parse
     |> elem(0)
+  end
+
+  defp headers do
+    [
+      "Player",
+      "Team",
+      "Pos",
+      "Att",
+      "Att/G",
+      "Yds",
+      "Avg",
+      "Yds/G",
+      "TD",
+      "Lng",
+      "1st",
+      "1st%",
+      "20+",
+      "40+",
+      "FUM"
+    ]
   end
 end
