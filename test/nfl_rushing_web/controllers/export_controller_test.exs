@@ -3,7 +3,7 @@ defmodule NflRushingWeb.ExportControllerTest do
 
   describe "GET /export" do
     test "sends CSV with all players' stats", %{conn: conn} do
-      conn = get(conn, "/export")
+      conn = get(conn, "/export", %{"order" => "", "filter" => ""})
       resp = conn.resp_body
 
       assert number_of_rows(resp) == 1 + 326

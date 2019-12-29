@@ -17,12 +17,4 @@ defmodule NflRushingWeb.ExportController do
     |> Enum.to_list()
     |> to_string
   end
-
-  defp csv_content(_params) do
-    PlayerStats.all()
-    |> PlayerStats.to_csv()
-    |> CSV.encode()
-    |> Enum.to_list()
-    |> to_string
-  end
 end
