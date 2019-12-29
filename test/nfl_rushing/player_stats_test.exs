@@ -77,7 +77,7 @@ defmodule CarpoolService.Core.CarpoolTest do
       assert %Player{name: "Ezekiel Elliott", total_rushing_yards: "1,631"} = hd(stats.stats)
     end
 
-    test "keep filter on" do
+    test "keeps filter on" do
       stats = PlayerStats.order_by("TD", "Charlie Whitehurst")
 
       assert 1 = length(stats.stats)

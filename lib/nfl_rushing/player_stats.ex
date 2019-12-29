@@ -100,7 +100,7 @@ defmodule NflRushing.PlayerStats do
       rushing_yards_per_game: attrs["Yds/G"],
       total_rushing_touchdowns: attrs["TD"],
       longest_rush: attrs["Lng"],
-      longest_rush_int: longest_rush_to_int(attrs["Lng"]),
+      longest_rush_int: lng_to_int(attrs["Lng"]),
       rushing_first_downs: attrs["1st"],
       rushing_first_down_percentage: attrs["1st%"],
       rushing_20_plus_yards: attrs["20+"],
@@ -109,9 +109,10 @@ defmodule NflRushing.PlayerStats do
     }
   end
 
-  defp longest_rush_to_int(lng) when is_integer(lng), do: lng
-  defp longest_rush_to_int(lng) do
-    Integer.parse(lng)
+  defp lng_to_int(lng) when is_integer(lng), do: lng
+  defp lng_to_int(lng) do
+    lng
+    |> Integer.parse
     |> elem(0)
   end
 
